@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useCallback, useEffect, useState } from "react";
+import { use, useCallback, useState } from "react";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote";
 import { Title } from "../components/Title";
@@ -45,7 +45,6 @@ export default function Home() {
   );
 
   const handleSubmit = (e: any) => {
-    console.log(e.target[0].value);
     const postData = async () => {
       const data = {
         mdx: e.target[0].value,

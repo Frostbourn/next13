@@ -4,13 +4,13 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-type Data = {
-  name: string;
+type Response = {
+  message: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<Response>
 ) {
   try {
     const body = JSON.parse(req.body);
