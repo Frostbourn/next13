@@ -1,5 +1,3 @@
-"use client";
-
 export const Title = ({ title }: { title: string }) => {
     return (
       <div>
