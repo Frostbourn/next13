@@ -25,9 +25,16 @@ const inputStyle = {
 };
 
 const formStyle = {
+  position: "sticky",
+  top: 0,
   display: "flex",
   flexDirection: "column",
 };
+
+const sticky = {
+  position: "sticky",
+  top: 0,
+}
 
 const components = {
   Title,
@@ -69,7 +76,7 @@ export default function Home() {
   return (
     <div style={container}>
       <div style={divStyle}>
-        <div>Form</div>
+        <div style={sticky}>Form</div>
         <form onSubmit={handleSubmit} style={formStyle}>
           <textarea
             maxLength={100000}
