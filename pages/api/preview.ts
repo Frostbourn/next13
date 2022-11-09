@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
-import { serialize } from "next-mdx-remote/serialize";
 
 const prisma = new PrismaClient();
 
@@ -18,7 +17,7 @@ export default async function handler(
 
     await prisma.layout.update({
       where: {
-        id: "7186f446-1de6-4b93-b451-f3ea9d29e53b",
+        id: process.env.DATABASE_URL,
       },
       data: {
         mdx: body.mdx,
