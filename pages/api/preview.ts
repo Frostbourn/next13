@@ -17,7 +17,7 @@ export default async function handler(
 
     await prisma.layout.update({
       where: {
-        id: process.env.DATABASE_URL,
+        id: process.env.DATABASE_NAME,
       },
       data: {
         mdx: body.mdx,
