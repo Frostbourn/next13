@@ -1,10 +1,10 @@
 "use client";
 
 import { use, useCallback, useEffect, useState } from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote";
 import { Title } from "../components/Title";
-import {makeQueryClient} from "../utils/queryClient";
+import { makeQueryClient } from "../utils/queryClient";
 
 const container = {
   display: "grid",
@@ -31,7 +31,7 @@ const formStyle = {
 
 const components = {
   Title,
-  Image
+  Image,
 };
 
 const queryClient = makeQueryClient();
@@ -40,10 +40,7 @@ export default function Home() {
   const { mdxSource, plainText } = use(
     queryClient(
       "data",
-      () =>
-        fetch("/api/data").then((res) =>
-          res.json()
-        ) as Promise<any>
+      () => fetch("/api/data").then((res) => res.json()) as Promise<any>
     )
   );
 
