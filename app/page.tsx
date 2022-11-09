@@ -1,8 +1,10 @@
 "use client";
 
 import { use, useCallback, useEffect, useState } from "react";
-import { Title } from "../components/Title";
+import Image from 'next/image'
 import { MDXRemote } from "next-mdx-remote";
+import { Title } from "../components/Title";
+import {makeQueryClient} from "../utils/queryClient";
 
 const container = {
   display: "grid",
@@ -29,22 +31,8 @@ const formStyle = {
 
 const components = {
   Title,
+  Image
 };
-
-type Pokemon = { id: number; name: string; image?: string };
-
-function makeQueryClient() {
-  const fetchMap = new Map<string, Promise<any>>();
-  return function queryClient<QueryResult>(
-    name: string,
-    query: () => Promise<QueryResult>
-  ): Promise<QueryResult> {
-    if (!fetchMap.has(name)) {
-      fetchMap.set(name, query());
-    }
-    return fetchMap.get(name)!;
-  };
-}
 
 const queryClient = makeQueryClient();
 
