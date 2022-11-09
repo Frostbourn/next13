@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 import { serialize } from "next-mdx-remote/serialize";
-import { compile } from "@mdx-js/mdx";
 
 const prisma = new PrismaClient();
 
@@ -18,8 +17,14 @@ export default async function handler(
   try {
     const result = await prisma.layout.findMany();
     const plainText = result[0]?.mdx;
-    const mdxSource = await serialize(plainText, { parseFrontmatter: true });
-    const compiled = await compile(plainText);
+    const mdxSource = await serialize(plainText, {
+      mdxOptions: {
+        remarkPlugins: [],
+        rehypePlugins: [],
+        format: "mdx",
+      },
+      parseFrontmatter: true,
+    });
 
     res.status(200).json({ mdxSource, plainText });
     await prisma.$disconnect();

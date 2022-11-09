@@ -1,7 +1,7 @@
-export const Title = ({ title }: { title: string }) => {
+export const Title = ({ text }: { text: string }) => {
     return (
       <div>
-        <h1>{title}</h1>
+        <h1>{text}</h1>
       </div>
     );
   };
