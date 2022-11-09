@@ -14,18 +14,18 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   try {
-    const body = JSON.parse(req.body)
+    const body = JSON.parse(req.body);
 
     await prisma.layout.update({
-        where: {
-          id: '7186f446-1de6-4b93-b451-f3ea9d29e53b',
-        },
-        data: {
-          mdx: body.mdx,
-        },
-      })
-console.log(body.mdx);
-    res.status(200).json({ message: 'Updated' });
+      where: {
+        id: "7186f446-1de6-4b93-b451-f3ea9d29e53b",
+      },
+      data: {
+        mdx: body.mdx,
+      },
+    });
+
+    res.status(200).json({ message: "Database updated" });
     await prisma.$disconnect();
   } catch (err) {
     console.error(err);

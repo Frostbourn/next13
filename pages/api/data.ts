@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 import { serialize } from "next-mdx-remote/serialize";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 type Data = {
   name: string;
@@ -19,7 +19,7 @@ export default async function handler(
     const mdxSource = await serialize(plainText, { parseFrontmatter: true });
 
     res.status(200).json({ mdxSource, plainText });
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   } catch (err) {
     console.error(err);
     await prisma.$disconnect();

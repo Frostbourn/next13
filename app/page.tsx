@@ -53,7 +53,7 @@ export default function Home() {
     queryClient(
       "data",
       () =>
-        fetch("http://localhost:3000/api/data").then((res) =>
+        fetch("/api/data").then((res) =>
           res.json()
         ) as Promise<any>
     )
@@ -66,7 +66,7 @@ export default function Home() {
         mdx: e.target[0].value,
       };
 
-      const response = await fetch("http://localhost:3000/api/preview", {
+      const response = await fetch("/api/preview", {
         method: "POST",
         body: JSON.stringify(data),
       });
@@ -93,13 +93,13 @@ export default function Home() {
             value={markdown}
             onChange={(e) => handleMarkdownChange(e)}></textarea>
           <button type='submit'>Preview</button>
+          <div>Frontmatter</div>
+          {JSON.stringify(mdxSource.frontmatter, null, 2)}
         </form>
       </div>
       <div style={divStyle}>
         <div>Preview</div>
         <MDXRemote {...mdxSource} components={components} />
-        <div>Frontmatter</div>
-        {JSON.stringify(mdxSource.frontmatter, null, 2)}
       </div>
     </div>
   );
