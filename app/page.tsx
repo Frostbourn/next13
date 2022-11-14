@@ -34,7 +34,7 @@ const formStyle = {
 const sticky = {
   position: "sticky",
   top: 0,
-}
+};
 
 const components = {
   Title,
@@ -47,24 +47,17 @@ export default function Home() {
   const { mdxSource, plainText } = use(
     queryClient(
       "data",
-      () => fetch("/api/data").then((res) => res.json()) as Promise<any>
+      () =>
+        fetch("http://localhost:3000/api/data").then((res) =>
+          res.json()
+        ) as Promise<any>
     )
   );
 
-  const handleSubmit = (e: any) => {
-    const postData = async () => {
-      const data = {
-        mdx: e.target[0].value,
-      };
-
-      const response = await fetch("/api/preview", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      return response.json();
-    };
-    postData().then((data) => {
-      alert(data.message);
+  const handlePreview = async (e: any) => {
+    return await fetch("http://localhost:3000/api/preview", {
+      method: "POST",
+      body: JSON.stringify({ mdx: e.target[0].value,}),
     });
   };
 
@@ -77,7 +70,7 @@ export default function Home() {
     <div style={container}>
       <div style={divStyle}>
         <div style={sticky}>Form</div>
-        <form onSubmit={handleSubmit} style={formStyle}>
+        <form onSubmit={handlePreview} style={formStyle}>
           <textarea
             maxLength={100000}
             style={inputStyle}

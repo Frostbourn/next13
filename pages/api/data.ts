@@ -1,9 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
 import { serialize } from "next-mdx-remote/serialize";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../utils/db.server";
 
 type Data = {
   mdxSource: string | unknown;
