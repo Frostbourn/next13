@@ -48,14 +48,14 @@ export default function Home() {
     queryClient(
       "data",
       () =>
-        fetch("http://localhost:3000/api/data").then((res) =>
+        fetch("/api/data").then((res) =>
           res.json()
         ) as Promise<any>
     )
   );
 
   const handlePreview = async (e: any) => {
-    return await fetch("http://localhost:3000/api/preview", {
+    return await fetch("/api/preview", {
       method: "POST",
       body: JSON.stringify({ mdx: e.target[0].value,}),
     });
